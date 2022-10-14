@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+img {
+    border: 1px solid grey;
+}
+header {
+    height: fit-content;
+    background-color: aquamarine;
+}
+header nav{
+    padding: 5px;
+    margin: 0 10%;
+    display: flex;
+}
+nav img {
+    border: none;
+    width: 100px;
+    align-self: center;
+}
+section {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 2%;
+}
+svg {
+    width: 30px;
+}
+input[type="file"] {
+    display: none;
+}
+label {
+    display: flex;
+    align-items: center;
+}
+.canvas {
+    width: fit-content;
+    position: relative;
+}
+.canvas canvas{
+    position: absolute;
+}
+article:not(:first-child) {
+    margin: 0 10px;
+}
+article:first-child {
+    display: flex;
+    gap: 5px;
+    width: fit-content;
+    flex-direction: column;
+}
+.select {
+    width: fit-content;
+    background-color: grey;
+}
+.select div {
+    display: flex;
+    width: fit-content;
+    margin: 10px;
+    align-items: center;
+    flex-direction: column;
+}
+.text{
+    top: 0;
+    left: 0;
+    font-size: 1rem;
+    position: absolute;
+    z-index: 1000;
+    cursor: move;
+}
+.resize {
+    position: absolute;
+    border: 1px solid green;
+    cursor: move;
+    width: fit-content;
+}
+.resize div {
+    display: flex;
+    justify-content: space-between;
+}
+.resize canvas {
+    border:1px solid green;
+    position: relative;
+    width: 200px;
+}
+.resize div span {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: aqua;
+    margin: -26px;
+    z-index: 100;
+}
+.resize div span:last-child {
+    cursor:nw-resize;
+}
