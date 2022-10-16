@@ -1,7 +1,5 @@
-import drawImage from "./drawImage.js";
-
-export default function (img) {
-    if(!img) return;
+export default (img) => {
+    if(img.tagName != 'IMG') return;
     let canvas, ctx, width, height;
     canvas = document.querySelector("canvas");
     ctx = canvas.getContext("2d");

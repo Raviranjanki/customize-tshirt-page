@@ -1,25 +1,22 @@
-export default function (element, parent){
-    console.log(element);
-    console.log(element.parentElement.nextElementSibling);
-    element.onmousedown = function (event) {
-        if (event.target.classList == "main") return;
-        console.log(parent);
-        function resizeCanvas(clientX) {
-            parent.style.width = clientX  + "px";
-        }
-        function onMouseMove(event) {
-            resizeCanvas(event.clientX)
-        }
-
-        parent.addEventListener("mousemove", onMouseMove);
-        
-        // document.onmouseup = function () {
-        //     parent.removeEventListener("mousemove", onMouseMove);
-        //     element.onmouseup = null;
-        // };
-        element.onmouseup = function () {
-            parent.removeEventListener("mousemove", onMouseMove);
-            element.onmouseup = null;
-        };
-    };
+export default ( element, canvas, canvasContainer) => {
+    if(!element || !canvas || !canvasContainer) return;
+    const resizeableCanvas = element.parentElement.previousElementSibling;
+    let elementPos, canvasLeft;
+    elementPos = resizeableCanvas.getBoundingClientRect();
+    
+    function moveAt(clientX) {
+        if(resizeableCanvas.style.width > canvas.width) return;
+        resizeableCanvas.style.width = clientX + "px";
+    }
+    function onMouseMove(event) {
+        let maxCanvasWidth = event.clientX - canvas.getBoundingClientRect().left;
+        if(maxCanvasWidth > canvas.width) return;
+        canvasLeft = event.clientX - elementPos.left;
+        moveAt(canvasLeft);
+    }
+    document.addEventListener("mousemove", onMouseMove);
+    canvasContainer.addEventListener("mouseup", () => {
+        document.removeEventListener("mousemove", onMouseMove);
+        canvas.onmouseup = null;
+    });
 }
